@@ -1,0 +1,116 @@
+<div class="row col-xs-12 top-margin-50">
+                <div class="col-lg-3">
+                    <h1 class="my-4">
+                        <!-- Employees -->
+                    </h1>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">Employees</a>
+                        <a href="#" class="list-group-item">Reviews</a>
+                        <a href="#" class="list-group-item">Assignes</a>
+                    </div>
+                </div>
+                <!-- /.col-lg-3 -->
+
+                <div class="col-lg-9">
+                    <!-- <div class="card mt-4">
+                        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                        <div class="card-body">
+                        <h3 class="card-title">Product Name</h3>
+                        <h4>$24.99</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+                        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                        4.0 stars
+                        </div>
+                    </div> -->
+                <!-- /.card -->
+                    <!-- <div class="card mt-4"></div> -->
+                    <div class="my-4">
+                        <div class="pull-left top-margin-50">
+                            <button type="button" class="btn btn-info btn-sm btn-cons" ng-click="addNewEmployee()">
+                                <span> 
+                                    Add New Employee 
+                                </span>
+                            </button>
+                        </div>
+                        <div class="top-margin-50" ng-show="isShowEmployee">
+                            <form id="form-personal" role="form" autocomplete="off" class="p-l-20 p-r-20 ng-invalid ng-invalid-required ng-dirty">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-group-default required" pg-form-group="">
+                                            <label>
+                                                <span class="ng-binding">Employee Id</span>
+                                            </label>
+                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" name="Name" ng-model="employeeDetails.employeeId"
+                                                required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-group-default" pg-form-group="">
+                                            <label>
+                                                <span class="ng-binding">Name</span>
+                                            </label>
+                                            <input type="text" class="form-control ng-valid ng-valid-min ng-dirty ng-valid-number" name="price" ng-model="employeeDetails.name"
+                                                money="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-group-default required" pg-form-group="">
+                                            <label>
+                                                <span class="ng-binding">Designation</span>
+                                            </label>
+                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" name="Name" ng-model="employeeDetails.designation"
+                                                required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-sm btn-cons" ng-click="addUpdateEmployee()">
+                                        <span>
+                                            Save Employee
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm btn-cons" ng-click="cancelAddEmployee()">
+                                        <span>
+                                            Cancel
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                         
+                    </div>
+                    <div class="my-4">
+                        <div class="row">
+                            <table class="table table-borderd">
+                                <thead>
+                                    <th>Employee Id</th>
+                                    <th>Name</th>
+                                    <th>Designation</th>
+                                    <th></th>
+                                </thead>
+                                <tbody ng-repeat="employee in employeeList track by $index">
+                                    <td>{{employee.employeeId}}</td>
+                                    <td>{{employee.name}}</td>
+                                    <td>{{employee.designation}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-sm btn-cons" ng-click="editEmploye(employee)">
+                                            <span>
+                                                Edit
+                                            </span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm btn-cons" ng-click="deleteEmploye(employee)">
+                                            <span>
+                                                Delete
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <!-- /.card -->
+                </div>
+                <!-- /.col-lg-9 -->
+            </div>

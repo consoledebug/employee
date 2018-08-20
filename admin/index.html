@@ -4,14 +4,184 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+         <!-- Bootstrap core CSS -->
+        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <!-- <link href="../css/shop-item.css" rel="stylesheet"> -->
+        <link href="styles/custom.css" rel="stylesheet">
+
         <script src="../lib/angular.js" ></script>
         <script src="../main.js" ></script>
+        <script src="services/service.js" ></script>
         <script src="controllers/controller.js" ></script>
     </head>
-    <body ng-app="MainRoot">
-        <div ng-controller="MainController">
-            Test {{name}}
+    <body ng-app="MainRoot" ng-controller="MainController">
+         <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Manage Employees</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <!-- <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul> -->
+                </div>
+            </div>
+        </nav>
+            <!-- Page Content -->
+            <div class="container">
 
+            <div class="row col-xs-12 top-margin-50">
+                <div class="col-lg-3">
+                    <h1 class="my-4">
+                        <!-- Employees -->
+                    </h1>
+                    <div class="list-group">
+                        <a href="#" ng-click="updateSelectedTab('employee')" class="list-group-item" ng-class="selectedTab == 'employee' ? 'active' : ''">Employees</a>
+                        <a href="#" ng-click="updateSelectedTab('assignes')" class="list-group-item" ng-class="selectedTab == 'assignes' ? 'active' : ''">Assignes</a>
+                        <a href="#" ng-click="updateSelectedTab('reviews')" class="list-group-item" ng-class="selectedTab == 'reviews' ? 'active' : ''">Reviews</a>
+                    </div>
+                </div>
+                <!-- /.col-lg-3 -->
+
+                <div ng-show="selectedTab == 'employee' ? true : false" class="col-lg-9">
+                    <!-- <div class="card mt-4">
+                        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                        <div class="card-body">
+                        <h3 class="card-title">Product Name</h3>
+                        <h4>$24.99</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+                        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                        4.0 stars
+                        </div>
+                    </div> -->
+                <!-- /.card -->
+                    <!-- <div class="card mt-4"></div> -->
+                    <div class="my-4">
+                        <div class="pull-left top-margin-50">
+                            <button type="button" class="btn btn-info btn-sm btn-cons" ng-click="addNewEmployee()">
+                                <span> 
+                                    Add New Employee 
+                                </span>
+                            </button>
+                        </div>
+                        <div class="top-margin-50" ng-show="isShowEmployee">
+                            <form id="form-personal" role="form" autocomplete="off" class="p-l-20 p-r-20 ng-invalid ng-invalid-required ng-dirty">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-group-default required" pg-form-group="">
+                                            <label>
+                                                <span class="ng-binding">Employee Id</span>
+                                            </label>
+                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" name="Name" ng-model="employeeDetails.employeeId"
+                                                required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-group-default" pg-form-group="">
+                                            <label>
+                                                <span class="ng-binding">Name</span>
+                                            </label>
+                                            <input type="text" class="form-control ng-valid ng-valid-min ng-dirty ng-valid-number" name="price" ng-model="employeeDetails.name"
+                                                money="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-group-default required" pg-form-group="">
+                                            <label>
+                                                <span class="ng-binding">Designation</span>
+                                            </label>
+                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" name="Name" ng-model="employeeDetails.designation"
+                                                required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-sm btn-cons" ng-click="addUpdateEmployee()">
+                                        <span>
+                                            Save Employee
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm btn-cons" ng-click="cancelAddEmployee()">
+                                        <span>
+                                            Cancel
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                         
+                    </div>
+                    <div class="my-4">
+                        <div class="row">
+                            <table class="table table-borderd">
+                                <thead>
+                                    <th>Employee Id</th>
+                                    <th>Name</th>
+                                    <th>Designation</th>
+                                    <th></th>
+                                </thead>
+                                <tbody ng-repeat="employee in employeeList track by $index">
+                                    <td>{{employee.employeeId}}</td>
+                                    <td>{{employee.name}}</td>
+                                    <td>{{employee.designation}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-sm btn-cons" ng-click="editEmploye(employee)">
+                                            <span>
+                                                Edit
+                                            </span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm btn-cons" ng-click="deleteEmploye(employee)">
+                                            <span>
+                                                Delete
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <!-- /.card -->
+                </div>
+                <div ng-show="selectedTab == 'assignes' ? true : false" class="col-lg-9">
+                    <h1>I am working on it.</h1>
+                </div>
+                <div ng-show="selectedTab == 'reviews' ? true : false" class="col-lg-9">
+                    <h1>I am working on it.</h1>
+                </div>
+                <!-- /.col-lg-9 -->
+            </div>
         </div>
-    </body>
+        <!-- /.container -->
+
+        <!-- Footer -->
+        <footer class="py-5 bg-dark footer">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        </div>
+        <!-- /.container -->
+        </footer>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </body> 
 </html>

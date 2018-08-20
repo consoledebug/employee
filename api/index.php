@@ -1,5 +1,6 @@
 <?php
-define('accessUser', 'inkXE');
 /* Load core files */
-require_once 'bootstrap.php';
-Flight::start();
+require_once 'lib/dbconfig.php';
+// Flight::start();
+
+?>
