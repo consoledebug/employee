@@ -9,6 +9,11 @@ MainRoot.controller("MainController",['$scope', '$rootScope', '$timeout','MainSe
     }
     $scope.selectedTab = "employee";
     $scope.employeeList = [];
+    $scope.isShowAssign = false;
+    $scope.selectedEmpolyee="";
+    $scope.assigneList = [];
+    $scope.selectedAssignee = '';
+    $scope.availbleAssignes = [];
 
     // initialize when page load
     // $scope.init = function(){
@@ -88,7 +93,34 @@ MainRoot.controller("MainController",['$scope', '$rootScope', '$timeout','MainSe
         $scope.selectedTab = tabType;
     }
 
+    //showing assigne form
+    $scope.addNewAssign = function () {
+        $scope.isShowAssign = true;
+        $scope.availbleAssignes = [];
+        angular.forEach($scope.employeeList,function(assigne){
+            if($scope.selectedEmpolyee == assigne.id){
+                assigne.isAvailble = false;
+            }else{
+                assigne.isAvailble = true;
+            }
+            $scope.availbleAssignes.push(assigne);
+        });
+    }
 
+    //hide add assgin form
+    $scope.cancelAddEmployee = function () {
+        $scope.isShowAssign = false;
+    }
 
+    // get selected employee assignes
+    $scope.updateSelectedEmployee = function() {
+       console.log($scope.selectedEmpolyee);
+       $scope.fetchEmployeeAssignes($scope.selectedEmpolyee);
+    }
+
+    // fetchSelected Employee Assignes
+    $scope.fetchEmployeeAssignes = function(id){
+        $scope.assigneList = [];
+    }
 
 }])

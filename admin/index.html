@@ -89,7 +89,7 @@
                                             <label>
                                                 <span class="ng-binding">Employee Id</span>
                                             </label>
-                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" name="Name" ng-model="employeeDetails.employeeId"
+                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required"  ng-model="employeeDetails.employeeId"
                                                 required="">
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@
                                             <label>
                                                 <span class="ng-binding">Name</span>
                                             </label>
-                                            <input type="text" class="form-control ng-valid ng-valid-min ng-dirty ng-valid-number" name="price" ng-model="employeeDetails.name"
+                                            <input type="text" class="form-control ng-valid ng-valid-min ng-dirty ng-valid-number"  ng-model="employeeDetails.name"
                                                 money="">
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@
                                             <label>
                                                 <span class="ng-binding">Designation</span>
                                             </label>
-                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" name="Name" ng-model="employeeDetails.designation"
+                                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required"  ng-model="employeeDetails.designation"
                                                 required="">
                                         </div>
                                     </div>
@@ -162,7 +162,87 @@
                 <!-- /.card -->
                 </div>
                 <div ng-show="selectedTab == 'assignes' ? true : false" class="col-lg-9">
-                    <h1>I am working on it.</h1>
+                    <h1></h1>
+                    <div class="my-4">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group form-group-default required" pg-form-group="">
+                                    <label>
+                                        <span class="ng-binding">Select Employee</span>
+                                    </label> 
+                                    <select class="form-control" ng-model="selectedEmpolyee" ng-options="employee.id as employee.name for employee in employeeList"
+                                        ng-click="updateSelectedEmployee()">
+                                        <option value="">Select Employee</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="selectedEmpolyee">
+                            <div class="col-sm-6">
+                                <div class="pull-left top-margin-50">
+                                    <button type="button" class="btn btn-info btn-sm btn-cons" ng-click="addNewAssign()">
+                                        <span>
+                                            Add Assgines to review
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="margin-10" ng-show="isShowAssign">
+                            <form id="form-personal" role="form" autocomplete="off" class="p-l-20 p-r-20 ng-invalid ng-invalid-required ng-dirty">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-group-default required" pg-form-group="">
+                                            <label>
+                                                <span class="ng-binding">Select Assignes</span>
+                                            </label>
+                                            <select class="form-control" ng-model="selectedAssignee" ng-options="assigne.id as assigne.name for assigne in availbleAssignes"
+                                                ng-click="updateSelectedEmployee()" ng-if="!assigne.isAvailble">
+                                                <option value="">Select Assignes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-sm btn-cons" ng-click="addUpdateEmployee()">
+                                        <span>
+                                            Assign To Review
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm btn-cons" ng-click="cancelAddEmployee()">
+                                        <span>
+                                            Cancel
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    
+                    </div>
+                    <div class="my-4">
+                        <div class="row">
+                            <table class="table table-borderd">
+                                <thead>
+                                    <th>Employee Id</th>
+                                    <th>Name</th>
+                                    <th>Designation</th>
+                                    <th></th>
+                                </thead>
+                                <tbody ng-repeat="employee in assigneList track by $index">
+                                    <td>{{employee.employeeId}}</td>
+                                    <td>{{employee.name}}</td>
+                                    <td>{{employee.designation}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm btn-cons" ng-click="deleteEmploye(employee)">
+                                            <span>
+                                                Delete
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div ng-show="selectedTab == 'reviews' ? true : false" class="col-lg-9">
                     <h1>I am working on it.</h1>
